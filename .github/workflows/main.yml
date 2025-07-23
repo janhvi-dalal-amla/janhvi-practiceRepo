@@ -6,11 +6,11 @@ on:
   pull_request:
     branches: [main]
 
-  jobs:
-    run-script:
-      runs-on: ubuntu-latest
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
 
-      steps:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
