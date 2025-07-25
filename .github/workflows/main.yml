@@ -24,7 +24,14 @@ jobs:
       - name: Run Python file
         run: |
           echo "Running all Python scripts in the repo..."
+          mkdir -p output
           for file in $(find . -name "*.py"); do
-            echo "▶ Running $file"
-            python "$file"
+            echo "▶ Running $file" | tee -a output/log.txt
+            python "$file" >> output/log.txt 2>&1
           done
+
+      - name: Upload output as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-script-logs
+          path: output/
